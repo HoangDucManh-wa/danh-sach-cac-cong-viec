@@ -15,12 +15,17 @@ const add3 = document.getElementById("add3");
 const add4 = document.getElementById("add4");
 const add5 = document.getElementById("add5");
 function getListData(ul) {
-  return Array.from(ul.children).map((li) => {
-    return {
-      text: li.firstChild.textContent, // text của li
-      checked: li.querySelector('input[type="checkbox"]').checked, // trạng thái checkbox
-    };
-  });
+  return Array.from(ul.children)
+    .filter((x) => {
+      if (x.tagName === "LI") return true;
+      else return false;
+    })
+    .map((li) => {
+      return {
+        text: li.firstChild.textContent, // text của li
+        checked: li.querySelector('input[type="checkbox"]').checked, // trạng thái checkbox
+      };
+    });
 }
 
 function save() {
@@ -54,8 +59,10 @@ function loadListData(ul, data) {
       save();
     });
     li.appendChild(del);
-
+    const br = document.createElement("br");
     ul.appendChild(li);
+
+    ul.appendChild(br);
   });
 }
 
@@ -88,7 +95,10 @@ function add(x, input) {
     li.remove();
     save();
   });
+  const br = document.createElement("br");
+
   x.appendChild(li);
+  x.appendChild(br);
   save();
 }
 //ham sua
