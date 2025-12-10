@@ -5,3 +5,6 @@
 #input5 {
   width: 300px;
 }
+li {
+  display: inline-block;
+}
